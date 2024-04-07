@@ -1,0 +1,39 @@
+Description: GCC 12 build fixes
+Author: Sergei Trofimovich <slyich@gmail.com>
+Last-Update: 2022-02-04
+Index: edb-debugger/include/IState.h
+===================================================================
+--- edb-debugger.orig/include/IState.h
++++ edb-debugger/include/IState.h
+@@ -19,6 +19,7 @@ along with this program.  If not, see <h
+ #ifndef ISTATE_H_20110315_
+ #define ISTATE_H_20110315_
+ 
++#include <memory>
+ #include "Register.h"
+ #include "Types.h"
+ 
+Index: edb-debugger/include/RegisterViewModelBase.h
+===================================================================
+--- edb-debugger.orig/include/RegisterViewModelBase.h
++++ edb-debugger/include/RegisterViewModelBase.h
+@@ -6,6 +6,7 @@
+ #include "util/Integer.h"
+ #include <QAbstractItemModel>
+ #include <deque>
++#include <memory>
+ #include <vector>
+ 
+ Q_DECLARE_METATYPE(std::vector<NumberDisplayMode>)
+Index: edb-debugger-1.3.0/include/State.h
+===================================================================
+--- edb-debugger.orig/include/State.h
++++ edb-debugger/include/State.h
+@@ -19,6 +19,7 @@ along with this program.  If not, see <h
+ #ifndef STATE_H_20060715_
+ #define STATE_H_20060715_
+ 
++#include <memory>
+ #include "API.h"
+ #include "Types.h"
+ 

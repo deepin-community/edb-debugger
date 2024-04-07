@@ -1,0 +1,37 @@
+From: Sam James <sam@cmpct.info>
+Date: Tue, 13 Sep 2022 19:51:08 +0100
+Subject: Fix build with Capstone 5 (#824)
+
+Capstone 5 drops X86_INS_VCVTPD2DQX and X86_INS_VCVTPD2PSX from
+x86.h (happened in https://github.com/capstone-engine/capstone/commit/dd91f03fef5102492352756e2adb5972dd79a70f
+but no real explanation).
+
+Given:
+1. these instructions had no wiring up;
+2. other Capstone consumers have done the same
+let's drop them entirely as we have no idea what they are. They don't
+appear in any Intel documentation and there's very little reference
+to them online at all.
+
+Bug: https://bugs.gentoo.org/843755
+Closes: https://github.com/eteran/edb-debugger/issues/823
+Signed-off-by: Sam James <sam@gentoo.org>
+
+Signed-off-by: Sam James <sam@gentoo.org>
+---
+ src/capstone-edb/Instruction.cpp | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/src/capstone-edb/Instruction.cpp b/src/capstone-edb/Instruction.cpp
+index 6aa67c9..3495b81 100644
+--- a/src/capstone-edb/Instruction.cpp
++++ b/src/capstone-edb/Instruction.cpp
+@@ -879,8 +879,6 @@ bool is_SIMD_PD(const Operand &operand) {
+ 	case X86_INS_CVTPD2PI:
+ 	case X86_INS_CVTPD2PS:
+ 	case X86_INS_VCVTPD2PS:
+-	case X86_INS_VCVTPD2DQX: // FIXME: what's this?
+-	case X86_INS_VCVTPD2PSX: // FIXME: what's this?
+ 	// case X86_INS_VCVTPD2QQ: // FIXME: Capstone seems to not support it
+ 	case X86_INS_VCVTPD2UDQ:
+ 		// case X86_INS_VCVTPD2UQQ: // FIXME: Capstone seems to not support it

@@ -1,0 +1,33 @@
+From: Sergei Trofimovich <slyfox@gentoo.org>
+Date: Mon, 8 Jun 2020 18:27:28 +0100
+Subject: widgets/QDisassemblyView: include QPainterPath
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Fix build failure on qt-5.15. Typical build error is:
+
+src/widgets/QDisassemblyView.cpp:1503:17:
+  error: aggregate ‘QPainterPath path’ has incomplete type and cannot be defined
+ 1503 |    QPainterPath path;
+      |                 ^~~~
+
+Reported-by: Toralf Förster
+Bug: https://bugs.gentoo.org/727530
+Signed-off-by: Sergei Trofimovich <slyfox@gentoo.org>
+---
+ src/widgets/QDisassemblyView.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/widgets/QDisassemblyView.h b/src/widgets/QDisassemblyView.h
+index c590e75..0579f3b 100644
+--- a/src/widgets/QDisassemblyView.h
++++ b/src/widgets/QDisassemblyView.h
+@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ #include <QAbstractScrollArea>
+ #include <QAbstractSlider>
+ #include <QCache>
++#include <QPainterPath>
+ #include <QPixmap>
+ #include <QSvgRenderer>
+ 

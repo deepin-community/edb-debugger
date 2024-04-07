@@ -1,0 +1,100 @@
+Description: Fixes spelling errors
+Author: Marcio de Souza Oliveira <marciosouza@debian.org>
+Last-Update: 2020-05-05
+Index: edb-debugger/src/widgets/QDisassemblyView.cpp
+===================================================================
+--- edb-debugger.orig/src/widgets/QDisassemblyView.cpp
++++ edb-debugger/src/widgets/QDisassemblyView.cpp
+@@ -1820,7 +1820,7 @@ Result<int, QString> QDisassemblyView::g
+ 		}
+ 	}
+ 
+-	return make_unexpected(tr("Failed to get instruciton size"));
++	return make_unexpected(tr("Failed to get instruction size"));
+ }
+ 
+ //------------------------------------------------------------------------------
+Index: edb-debugger/plugins/CheckVersion/CheckVersion.cpp
+===================================================================
+--- edb-debugger.orig/plugins/CheckVersion/CheckVersion.cpp
++++ edb-debugger/plugins/CheckVersion/CheckVersion.cpp
+@@ -144,7 +144,7 @@ void CheckVersion::requestFinished(QNetw
+ 		if (!initialCheck_) {
+ 			QMessageBox::critical(
+ 				nullptr,
+-				tr("An Error Occured"),
++				tr("An Error Occurred"),
+ 				reply->errorString());
+ 		}
+ 	} else {
+Index: edb-debugger/src/Debugger.cpp
+===================================================================
+--- edb-debugger.orig/src/Debugger.cpp
++++ edb-debugger/src/Debugger.cpp
+@@ -663,10 +663,10 @@ QString Debugger::createTty() {
+ 					const int rv  = select(fd + 1, &set, nullptr, nullptr, &timeout);
+ 					switch (rv) {
+ 					case -1:
+-						qDebug() << "An error occured while attempting to get the TTY of the terminal sub-process";
++						qDebug() << "An error occurred while attempting to get the TTY of the terminal sub-process";
+ 						break;
+ 					case 0:
+-						qDebug() << "A Timeout occured while attempting to get the TTY of the terminal sub-process";
++						qDebug() << "A Timeout occurred while attempting to get the TTY of the terminal sub-process";
+ 						break;
+ 					default:
+ 						if (read(fd, buf, sizeof(buf)) != -1) {
+Index: edb-debugger/src/session/SessionManager.cpp
+===================================================================
+--- edb-debugger.orig/src/session/SessionManager.cpp
++++ edb-debugger/src/session/SessionManager.cpp
+@@ -78,7 +78,7 @@ Result<void, SessionError> SessionManage
+ 	if (error.error != QJsonParseError::NoError) {
+ 		SessionError session_error;
+ 		session_error.err     = SessionError::UnknownError;
+-		session_error.message = tr("An error occured while loading session JSON file. %1").arg(error.errorString());
++		session_error.message = tr("An error occurred while loading session JSON file. %1").arg(error.errorString());
+ 		return make_unexpected(session_error);
+ 	}
+ 
+Index: edb-debugger/src/main.cpp
+===================================================================
+--- edb-debugger.orig/src/main.cpp
++++ edb-debugger/src/main.cpp
+@@ -67,8 +67,8 @@ struct LaunchArguments {
+ 	std::cerr << '\n';
+ 	std::cerr << " --attach <pid>            : attach to running process\n";
+ 	std::cerr << " --run <program> (args...) : execute specified <program> with <args>\n";
+-	std::cerr << " --stdin <filename>        : set the STDIN of the target process (MUST preceed --run)\n";
+-	std::cerr << " --stdout <filename>       : set the STDOUT of the target process (MUST preceed --run)\n";
++	std::cerr << " --stdin <filename>        : set the STDIN of the target process (MUST preceded --run)\n";
++	std::cerr << " --stdout <filename>       : set the STDOUT of the target process (MUST preceded --run)\n";
+ 	std::cerr << " --version                 : output version information and exit\n";
+ 	std::cerr << " --dump-version            : display terse version string and exit\n";
+ 	std::cerr << " --help                    : display this help and exit\n";
+Index: edb-debugger/src/SymbolManager.cpp
+===================================================================
+--- edb-debugger.orig/src/SymbolManager.cpp
++++ edb-debugger/src/SymbolManager.cpp
+@@ -290,7 +290,7 @@ void SymbolManager::setLabel(edb::addres
+ 			QMessageBox::warning(
+ 				edb::v1::debugger_ui,
+ 				tr("Duplicate Label"),
+-				tr("You are attempting to give two seperate addresses the same label, this is not supported."));
++				tr("You are attempting to give two separate addresses the same label, this is not supported."));
+ 			return;
+ 		}
+ 
+Index: edb-debugger/src/lang/edb_en.ts
+===================================================================
+--- edb-debugger.orig/src/lang/edb_en.ts
++++ edb-debugger/src/lang/edb_en.ts
+@@ -1453,7 +1453,7 @@ This is normal if edb has not been previ
+     </message>
+     <message>
+         <location filename="../SymbolManager.cpp" line="247"/>
+-        <source>You are attempting to give two seperate addresses the same label, this is not supported.</source>
++        <source>You are attempting to give two separate addresses the same label, this is not supported.</source>
+         <translation type="unfinished"></translation>
+     </message>
+ </context>

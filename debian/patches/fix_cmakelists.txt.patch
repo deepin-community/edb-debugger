@@ -1,0 +1,20 @@
+Description: Disables the check of src/qhexview/.git directory
+Author: Marcio de Souza Oliveira <marciosouza@debian.org>
+Last-Update: 2020-04-22
+Index: edb-debugger/CMakeLists.txt
+===================================================================
+--- edb-debugger.orig/CMakeLists.txt
++++ edb-debugger/CMakeLists.txt
+@@ -3,9 +3,9 @@ project (edb CXX)
+ 
+ enable_testing()
+ 
+-if(NOT EXISTS "${PROJECT_SOURCE_DIR}/src/qhexview/.git")
+-	message(SEND_ERROR "The git submodules are not available. Please run:\ngit submodule update --init --recursive")
+-endif()
++#if(NOT EXISTS "${PROJECT_SOURCE_DIR}/src/qhexview/.git")
++#	message(SEND_ERROR "The git submodules are not available. Please run:\ngit submodule update --init --recursive")
++#endif()
+ 
+ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake/Modules/")
+ 

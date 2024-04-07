@@ -1,0 +1,30 @@
+From d0d904383cb5baf607404178bc5632235e8e1ea7 Mon Sep 17 00:00:00 2001
+From: Sam James <sam@gentoo.org>
+Date: Mon, 17 Apr 2023 16:11:43 +0100
+Subject: [PATCH] Fix build with GCC 13 (#837)
+
+GCC 13 (as usual for new compiler releases) shuffles around some internal includes so some
+are no longer transitively included.
+
+See https://gnu.org/software/gcc/gcc-13/porting_to.html.
+
+Bug: https://bugs.gentoo.org/897890
+---
+ plugins/DebuggerCore/unix/linux/FeatureDetect.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/plugins/DebuggerCore/unix/linux/FeatureDetect.cpp b/plugins/DebuggerCore/unix/linux/FeatureDetect.cpp
+index 0e232e39..c7eb5bbd 100644
+--- a/plugins/DebuggerCore/unix/linux/FeatureDetect.cpp
++++ b/plugins/DebuggerCore/unix/linux/FeatureDetect.cpp
+@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ #include "FeatureDetect.h"
+ #include "version.h"
+ 
++#include <cstdint>
+ #include <fcntl.h>
+ #include <iomanip>
+ #include <iostream>
+-- 
+2.39.2
+
