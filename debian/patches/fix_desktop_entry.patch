@@ -1,0 +1,18 @@
+Description: Added keyword field in edb.desktop and changed the edb icon.
+Author: Marcio de Souza Oliveira <m.desouza20@gmail.com>
+Last-Update: 2017-04-30
+
+Index: edb-debugger/edb.desktop
+===================================================================
+--- edb-debugger.orig/edb.desktop
++++ edb-debugger/edb.desktop
+@@ -3,7 +3,8 @@ Name=edb
+ GenericName="Evan's Debugger"
+ Comment="edb is a cross platform x86/x86-64 debugger"
+ Exec=edb
+-Icon=edb
++Icon=edb48-logo
+ Terminal=false
+ Type=Application
+ Categories=Development;Qt;Debugger;
++Keywords=debugger;development;graphical

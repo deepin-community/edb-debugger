@@ -1,0 +1,7 @@
+fix_spelling.patch
+fix_desktop_entry.patch
+fix_cmakelists.txt.patch
+0001-Gcc-12-includes-fix-815.patch
+#0004-widgets-QDisassemblyView-include-QPainterPath.patch
+fix_capstone_5.patch
+fix_gcc_13.patch
